@@ -1,0 +1,16 @@
+  
+.chatHeaderWrapper {
+    height: 90px;
+    color: rgb(39, 39, 39);
+    z-index: 2;
+}
+
+.chatRoom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+router-outlet {
+    height:0;
+}

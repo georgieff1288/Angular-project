@@ -1,0 +1,52 @@
+.messageContainer{
+    display: flex;
+    height: auto;
+    width: 70%;
+    min-width: 400px;
+    border-radius: 5px;
+    align-items:stretch;
+    background-color: rgb(238, 238, 238);
+}
+
+.isOwnMessageContainer{
+    background-color: rgb(1, 87, 155);
+}
+
+.messageData{
+    flex: 1;
+    padding: 10px;
+    font-size: 0.7em;
+}
+
+.sender{
+    display: block;
+    color: rgb(34, 34, 34);
+    font-weight: bold;
+}
+
+.isOwnSender{
+    color: rgb(225, 245, 254);
+}
+
+.timestamp {
+    color: rgb(85, 85, 85);
+    font-style: italic;
+}
+
+.isOwnTimestamp{
+    color: rgb(79, 195, 247);
+}
+
+.messageContent{
+    height: auto;
+    flex: 9;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.isOwnMessageContent{
+    background-color: rgb(227, 242, 253);
+    color: rgb(1, 87, 155);
+}

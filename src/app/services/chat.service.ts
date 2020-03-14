@@ -13,7 +13,7 @@ import * as firebase from 'firebase/app';
 export class ChatService {
 
   user: any;
-  chatMessages: AngularFirestoreCollection<any>;
+  chatMessages: AngularFirestoreCollection;
   chatMessage: ChatMessage;
   userName: Observable<string>;
 
@@ -33,18 +33,16 @@ export class ChatService {
     //const email = this.user.email;
     const email = 'test@abv.bg';
     this.chatMessages = this.getMessages();
-    this.chatMessages.add({
+     this.chatMessages.add({
       message: msg,
       timeSent: timestamp,
       //userName: this.userName,
       userName: 'ivan',
       email: email });
-
-      console.log('called sendMessage')
   }
   
-  getMessages(): AngularFirestoreCollection<any> {
-       return this.db.collection('messages', ref => ref.limitToLast(25).orderBy('key'))    
+  getMessages(){
+       return this.db.collection('messages', ref => ref.limitToLast(25).orderBy('timeSent'));          
   }
 
   getTimeStamp() {
