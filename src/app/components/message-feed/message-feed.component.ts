@@ -4,6 +4,8 @@ import { ChatMessage } from '../../shared/models/chat-message.model'
 import { ChatService } from '../../services/chat.service'
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-message-feed',
@@ -13,14 +15,16 @@ import { map } from 'rxjs/operators';
 export class MessageFeedComponent implements OnInit, OnChanges {
 
   feed: Observable<any[]>;
+  user: User;
 
-  constructor(private chat: ChatService, private db: AngularFirestore) { }
+  constructor(private chat: ChatService, private auth: AuthService) { }
 
-  ngOnInit() {
-    this.feed = this.chat.getMessages().valueChanges();
+   ngOnInit() {
+     this.feed = this.chat.getMessages().valueChanges();
+    // this.auth.userData.subscribe(appUser => this.user = appUser)
   }
 
-  ngOnChanges() {
+   ngOnChanges() {
     this.feed = this.chat.getMessages().valueChanges();
   }
 

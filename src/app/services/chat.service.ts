@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Subject, Subscription, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { ChatMessage } from '../shared/models/chat-message.model'
 import * as firebase from 'firebase/app';
+import { User } from '../shared/models/user.model';
 
 
 @Injectable({
@@ -12,37 +15,65 @@ import * as firebase from 'firebase/app';
 })
 export class ChatService {
 
-  user: any;
+  user: firebase.User;
   chatMessages: AngularFirestoreCollection;
   chatMessage: ChatMessage;
   userName: Observable<string>;
+  users: User[];
 
   constructor(
-    private db: AngularFirestore,
+    private firestore: AngularFirestore,
+    private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
   ) {
-    //this.afAuth.authState.subscribe(auth => {
-    //  if (auth !== undefined && auth !== null) {
-    //    this.user = auth;
-    //  }
-    //});
-   }
+    this.afAuth.authState.subscribe(auth => {
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+
+      // this.getUser().subscribe(a => {
+      //   this.userName = a.displayName;
+      // });            
+      
+    });
+  }
+
+  // getUser() {
+  //   const userId = this.user.uid;
+  //   const path = `/users/${userId}`;
+  //   console.log(userId)
+  //   return this.db.object(path);
+  // }
+
+  getUser() {
+    const userId = this.user.uid;
+    const path = `/users/${userId}`;
+    //return this.firestore.doc(path);
+    console.log(userId)
+     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(path);
+     return userRef;
+  }
+
+  getUsers() {
+    const path = '/users';
+    return this.db.list(path);
+  }
 
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
-    //const email = this.user.email;
-    const email = 'test@abv.bg';
+    const email = this.user.email;
+    var name = email.match(/^([^@]*)@/)[1];
     this.chatMessages = this.getMessages();
-     this.chatMessages.add({
+    this.chatMessages.add({
       message: msg,
       timeSent: timestamp,
       //userName: this.userName,
-      userName: 'ivan',
+      userName:name,
       email: email });
   }
   
   getMessages(){
-       return this.db.collection('messages', ref => ref.limitToLast(25).orderBy('timeSent'));          
+       return this.firestore.collection('messages', ref => ref.limitToLast(25).orderBy('timeSent'));          
   }
 
   getTimeStamp() {
