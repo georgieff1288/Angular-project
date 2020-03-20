@@ -26,6 +26,7 @@ import { environment } from 'src/environments/environment';
 import { ChatService } from './services/chat.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserService } from './services/user.service';
     UserProfileComponent,
     CreateChatroomComponent,
     ChatroomsListComponent,
-    UsersListComponent
+    UsersListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

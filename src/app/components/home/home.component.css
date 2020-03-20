@@ -1,0 +1,19 @@
+.container{
+    height: 100%;
+    overflow:hidden;
+    background: rgba(255,255,255);
+}
+
+.title {
+    margin: auto;    
+    margin-top: 40px;
+    width: 50%;
+}
+
+h1{
+    height: 2em;
+}
+
+a {
+    text-decoration: none;
+}  
