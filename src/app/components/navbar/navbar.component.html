@@ -1,7 +1,7 @@
 <div class="navBar">
     <div id="logo"></div>
     <div id="heading"><a routerLink="/">Chat App </a></div>
-  <div class="links">
+  <div class="links">    
     <span>
       <a *ngIf="!(user|async)?.uid" routerLink="/login">Login</a>
     </span>
@@ -10,6 +10,9 @@
     </span>
     <span>
       <span id="userEmail" *ngIf="(user|async)?.uid">Hello, {{userEmail}}</span>
+    </span>
+    <span>
+      <a *ngIf="(user|async)?.uid" routerLink="/createchatroom">Create chatroom</a>
     </span>
     <span>
       <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>

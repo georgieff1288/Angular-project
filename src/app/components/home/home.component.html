@@ -2,8 +2,12 @@
 
     <div class="title" *ngIf="!(user|async)?.uid">
         <h1>
-            Please <a routerLink="/login">Login</a> to start a chat! Don't have an account yet? <a routerLink="/signup">Sign-up</a> right now
+            Please <a routerLink="/login">Login</a> to start a chat!
         </h1> 
+		<br>
+		<h1>
+			Don't have an account yet? <a routerLink="/signup">Sign-up</a> right now.
+		</h1>
     </div>  
         
     <div class="title" *ngIf="(user|async)?.uid">

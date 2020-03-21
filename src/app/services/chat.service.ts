@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { ChatMessage } from '../shared/models/chat-message.model'
 import * as firebase from 'firebase/app';
 import { User } from '../shared/models/user.model';
+import { ChatRoom } from '../shared/models/chatRoom.model';
 
 
 @Injectable({
@@ -18,6 +19,8 @@ export class ChatService {
   user: firebase.User;
   chatMessages: AngularFirestoreCollection;
   chatMessage: ChatMessage;
+  chatRooms: AngularFirestoreCollection;
+  chatRoom: ChatRoom
   userName: Observable<string>;
   users: User[];
 
@@ -74,6 +77,15 @@ export class ChatService {
   
   getMessages(){
        return this.firestore.collection('messages', ref => ref.limitToLast(25).orderBy('timeSent'));          
+  }
+
+  getChatrooms(){
+    return this.firestore.collection('chatrooms', ref => ref.orderBy('name'));          
+  }
+
+  createChatroom(chatRoomName: string){    
+    this.chatRooms = this.getChatrooms();
+    this.chatRooms.add({name: chatRoomName})
   }
 
   getTimeStamp() {

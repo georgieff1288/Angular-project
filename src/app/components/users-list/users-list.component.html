@@ -1,1 +1,5 @@
-<p>users-list works!</p>
+<div *ngFor="let user of users" class="userList">
+    <span class="userName">
+        {{user.displayName}}
+    </span> 
+</div>

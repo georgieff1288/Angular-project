@@ -1,0 +1,15 @@
+.userList{
+    height: auto;
+    padding: 10px;
+    width: 90%;
+    margin-top: 10px;
+    border-radius: 1px;
+    align-items:flex-start;
+    background-color: rgb(86, 68, 184);
+    color: rgb(243, 240, 245);
+    border-radius: 8px;
+}
+
+.userName{
+    display: inline-block;
+}

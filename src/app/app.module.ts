@@ -16,11 +16,10 @@ import { MessageComponent } from './components/message/message.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserItemComponent } from './components/user-item/user-item.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
-import { CreateChatroomComponent } from './components/create-chatroom/create-chatroom.component';
 import { ChatroomsListComponent } from './components/chatrooms-list/chatrooms-list.component';
+import { CreateCharoomComponent } from './components/create-charoom/create-charoom.component';
 import { environment } from 'src/environments/environment';
 
 import { ChatService } from './services/chat.service';
@@ -38,12 +37,11 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    UserItemComponent,
     UserProfileComponent,
-    CreateChatroomComponent,
     ChatroomsListComponent,
     UsersListComponent,
-    HomeComponent
+    HomeComponent,
+    CreateCharoomComponent
   ],
   imports: [
     BrowserModule,

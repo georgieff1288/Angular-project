@@ -12,36 +12,12 @@ import { User } from '../shared/models/user.model';
 
 export class UserService {
 
-  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth) { }
+  constructor(private firestore: AngularFirestore,
+    private db: AngularFireDatabase, 
+    public afAuth: AngularFireAuth) { }
 
-  // get(uid: string): Observable<User> {
-  //   return this.db.doc<User>('/users/' + uid).valueChanges();
-  // }
-
-  // getUsers() {
-  //   const path = '/users';
-  //   return this.db.doc(path);
-  // }
-
-  // getUser(uid:string) {
-  //   const userId = uid;
-  //   const path = `/users/${userId}`;
-  //   return this.db.doc(path);
-  // }
-
-  get(uid: string): Observable<User> {
-    return this.db.object<User>('/users/' + uid).valueChanges();
-  }
-
-  updateCurrentUser(displayName){
-    return new Promise<any>((resolve, reject) => {
-      var user = firebase.auth().currentUser;
-      user.updateProfile({
-        displayName: displayName
-      }).then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
+  getUsers(){
+    return this.firestore.collection('users', ref => ref); 
   }
 }
 

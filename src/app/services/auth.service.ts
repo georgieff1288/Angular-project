@@ -110,16 +110,5 @@ export class AuthService {
       this.db.object(path).update(data)
         .catch(error => console.log(error));
     }
-
-    get getUser(): Observable<User> {
-
-      return this.user.pipe(
-        switchMap(user => {
-          if (user)
-            return this.userService.get(user.uid);
-          else
-            return of(null);
-        })
-      )
-    }
+    
 }
