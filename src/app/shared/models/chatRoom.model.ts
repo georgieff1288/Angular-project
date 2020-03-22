@@ -1,3 +1,4 @@
-export class ChatRoom {
-    name?: string
+export class Chatroom {
+    name?: string;
+    messages?: any[];
 }

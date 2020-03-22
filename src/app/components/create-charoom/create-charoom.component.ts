@@ -8,7 +8,7 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class CreateCharoomComponent implements OnInit {
 
-  chatRoomName: string;
+  chatroomName: string;
 
   constructor(private chat: ChatService) { }
 
@@ -16,8 +16,8 @@ export class CreateCharoomComponent implements OnInit {
   }
 
   create(){
-    this.chat.createChatroom(this.chatRoomName);
-    this.chatRoomName = '';
+    this.chat.createChatroom(this.chatroomName);
+    this.chatroomName = '';
   }
 
 }

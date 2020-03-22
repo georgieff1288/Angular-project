@@ -47,7 +47,7 @@ export class AuthService {
 
     logout() {
       this.afAuth.auth.signOut();
-      this.router.navigate(['']);
+      this.router.navigate(['/home']);
     }
 
     login(email: string, password: string) {
@@ -55,7 +55,7 @@ export class AuthService {
         .then((user) => {
           this.authState = user;
           this.setUserStatus('online');
-          this.router.navigate(['chat']);
+          this.router.navigate(['chatrooms']);
         });
     }
         
@@ -74,7 +74,7 @@ export class AuthService {
         email: email,
         displayName: displayName,
         status: status
-      };
+    };
       
       const userRef : AngularFirestoreDocument<User> = this.firestore.doc(path);
       userRef.set(data, { merge: true });
@@ -83,22 +83,15 @@ export class AuthService {
     }
     
 
-    // setUserData(email: string, displayName: string, status: string): void {
-    //   const path = `users/${this.currentUserId}`;
-    //   const data = {
-    //     email: email,
-    //     displayName: displayName,
-    //     status: status
-    //   };
-    //   this.db.object(path).update(data)
-    //     .catch(error => console.log(error));
-    //   //const userRef : AngularFirestoreDocument<User> = this.db.doc(path);
-    //   //userRef.set(data, { merge: true });
-    //   //this.db.doc(path).update(data)
-    //   //.catch(error => console.log(error));
-    // }
+    editProfile(email: string, password: string, displayName: string){
+      const user = this.afAuth.auth.currentUser;
+      const status = 'online';
+      user.updatePassword(password);
+      user.updateEmail(email);
 
-    
+      this.setUserData(email, displayName, status);
+      this.logout();
+    }
 
     setUserStatus(status: string): void {
       const path = `users/${this.currentUserId}`;

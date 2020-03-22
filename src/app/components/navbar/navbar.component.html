@@ -12,7 +12,13 @@
       <span id="userEmail" *ngIf="(user|async)?.uid">Hello, {{userEmail}}</span>
     </span>
     <span>
+      <a *ngIf="(user|async)?.uid" routerLink="/chatrooms">Chatrooms</a>
+    </span>
+    <span>
       <a *ngIf="(user|async)?.uid" routerLink="/createchatroom">Create chatroom</a>
+    </span>
+    <span>
+      <a *ngIf="(user|async)?.uid" routerLink="/settings">Settings</a>
     </span>
     <span>
       <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>

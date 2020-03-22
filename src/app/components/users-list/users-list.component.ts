@@ -11,8 +11,8 @@ export class UsersListComponent  {
 
   users: User[];
 
-  constructor(userService: UserService) { 
-    userService.getUsers().valueChanges().subscribe(users => {
+  constructor(private userService: UserService) { 
+    this.userService.getUsers().valueChanges().subscribe(users => {
       this.users = users;
     });
   }  

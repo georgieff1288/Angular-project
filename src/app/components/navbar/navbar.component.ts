@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit {
   user: Observable<firebase.User>;
   userEmail: string;
   username: string;
-  //appUser: User;
 
   constructor(private authService: AuthService) { }
 
@@ -25,7 +24,7 @@ export class NavbarComponent implements OnInit {
         this.userEmail = user.email;
       }
     });
-    //this.authService.getUser.subscribe(appUser => this.appUser = appUser);
+    
   }
 
   logout() {

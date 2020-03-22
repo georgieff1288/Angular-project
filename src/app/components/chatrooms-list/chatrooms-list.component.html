@@ -1,1 +1,7 @@
-<p>chatroom list</p>
+<div class="container">
+    <div *ngFor="let chatroom of chatrooms" class="chatroomList">
+        <span class="chatroomName">
+            <a routerLink="/chat">{{chatroom.name}}</a>
+        </span> 
+    </div>
+</div>
