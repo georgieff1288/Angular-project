@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-users-list',
@@ -11,8 +11,8 @@ export class UsersListComponent  {
 
   users: User[];
 
-  constructor(private userService: UserService) { 
-    this.userService.getUsers().valueChanges().subscribe(users => {
+  constructor(private chatService: ChatService) { 
+    this.chatService.getUsers().valueChanges().subscribe(users => {
       this.users = users;
     });
   }  

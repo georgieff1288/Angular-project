@@ -20,12 +20,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { ChatroomsListComponent } from './components/chatrooms-list/chatrooms-list.component';
 import { CreateCharoomComponent } from './components/create-charoom/create-charoom.component';
+import { HomeComponent } from './components/home/home.component';
 import { environment } from 'src/environments/environment';
 
 import { ChatService } from './services/chat.service';
 import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { HomeComponent } from './components/home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { HomeComponent } from './components/home/home.component';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [AuthService, ChatService, UserService],
+  providers: [AuthService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

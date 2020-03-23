@@ -1,6 +1,7 @@
 <div class="container">
     <div class="loginCard">
-      <h2 class="heading">Log In</h2>
+      <form #loginForm="ngForm">
+        <h2 class="heading">Log In</h2>
         <input 
           [(ngModel)]="email"
           type="email" 
@@ -15,5 +16,6 @@
                 (click)="login()">
                 Log In
         </button>
+      </form>      
     </div>
   </div>

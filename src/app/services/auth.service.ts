@@ -2,12 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument  } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { User } from '../shared/models/user.model';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +14,9 @@ export class AuthService {
   private user: Observable<firebase.User>;
   private authState: any;
 
-  constructor(private afAuth: AngularFireAuth, 
-    private db: AngularFireDatabase,
+  constructor(private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router,
-    private userService: UserService) {
+    private router: Router) {
       this.user = afAuth.authState;
      }
     
@@ -33,20 +28,9 @@ export class AuthService {
       return this.authState !== null ? this.authState.user.uid : '';
     }
 
-    // get userData(): Observable<User> {
-
-    //   return this.user.pipe(
-    //     switchMap(user => {
-    //       if (user)
-    //         return this.userService.get(user.uid);
-    //       else
-    //         return of(null);
-    //     })
-    //   )
-    // }
-
-    logout() {
+    logout() {      
       this.afAuth.auth.signOut();
+      this.setUserStatus('offline');
       this.router.navigate(['/home']);
     }
 
@@ -78,8 +62,6 @@ export class AuthService {
       
       const userRef : AngularFirestoreDocument<User> = this.firestore.doc(path);
       userRef.set(data, { merge: true });
-      //this.db.doc(path).update(data)
-      //.catch(error => console.log(error));
     }
     
 
@@ -99,9 +81,9 @@ export class AuthService {
       const data = {
         status: status
       };
-
-      this.db.object(path).update(data)
-        .catch(error => console.log(error));
+      
+      const userRef : AngularFirestoreDocument<User> = this.firestore.doc(path);
+      userRef.set(data, { merge: true });
     }
     
 }

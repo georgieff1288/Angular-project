@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 import { ChatMessage } from '../shared/models/chat-message.model'
 import * as firebase from 'firebase/app';
 import { User } from '../shared/models/user.model';
@@ -27,7 +24,6 @@ export class ChatService {
 
   constructor(
     private firestore: AngularFirestore,
-    private db: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private router: Router
   ) {
@@ -35,33 +31,19 @@ export class ChatService {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
-
-      // this.getUser().subscribe(a => {
-      //   this.userName = a.displayName;
-      // });            
-      
+      this.getUser().valueChanges().subscribe(user => console.log(user));      
     });
   }
-
-  // getUser() {
-  //   const userId = this.user.uid;
-  //   const path = `/users/${userId}`;
-  //   console.log(userId)
-  //   return this.db.object(path);
-  // }
 
   getUser() {
     const userId = this.user.uid;
     const path = `/users/${userId}`;
-    //return this.firestore.doc(path);
-    console.log(userId)
      const userRef: AngularFirestoreDocument<User> = this.firestore.doc(path);
      return userRef;
   }
 
-  getUsers() {
-    const path = '/users';
-    return this.db.list(path);
+  getUsers(){
+    return this.firestore.collection('users', ref => ref); 
   }
 
   sendMessage(msg: string) {

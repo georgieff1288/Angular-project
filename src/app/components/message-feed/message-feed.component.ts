@@ -21,7 +21,6 @@ export class MessageFeedComponent implements OnInit, OnChanges {
 
    ngOnInit() {
      this.feed = this.chat.getMessages().valueChanges();
-    // this.auth.userData.subscribe(appUser => this.user = appUser)
   }
 
    ngOnChanges() {
