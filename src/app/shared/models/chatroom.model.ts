@@ -1,4 +1,4 @@
 export class Chatroom {
     name?: string;
-    messages?: any[];    
+    messages?: any[];
 }

@@ -16,11 +16,12 @@ export class UsersListComponent implements OnInit {
 
   constructor(private chatService: ChatService,private route: ActivatedRoute) { 
     this.chatService.getUsers().valueChanges().subscribe(users => {
-      this.users = users});
-      this.chatroomId = this.route.snapshot.params['id'];
+       this.users = users});
+    this.chatroomId = this.route.snapshot.params['id'];
+;
   }  
 
-   ngOnInit(){
+  ngOnInit(){
     this.chatService.getChatroomById(this.chatroomId)
       .valueChanges().subscribe(chatroom => {this.chatroom = chatroom});
   }

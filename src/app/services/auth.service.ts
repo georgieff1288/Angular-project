@@ -39,7 +39,7 @@ export class AuthService {
         .then((user) => {
           this.authState = user;
           this.setUserStatus('online');
-          this.router.navigate(['chatrooms']);
+          this.router.navigate(['']);
         }).catch((error) => {
           window.alert(error.message)
         })
