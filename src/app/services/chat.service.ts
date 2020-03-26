@@ -47,8 +47,6 @@ export class ChatService {
 
   sendMessage(msg: string, chatroomId: string) {
     const timestamp = this.getTimeStamp();
-    const email = this.user.email;
-    const name = email.match(/^([^@]*)@/)[1];
     this.chatMessages = this.getMessages(chatroomId);
     this.chatMessages.add({
       message: msg,
