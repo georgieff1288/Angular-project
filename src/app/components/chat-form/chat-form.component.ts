@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-chat-form',
   templateUrl: './chat-form.component.html',
@@ -7,15 +8,18 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class ChatFormComponent implements OnInit {
 
-  message: string;
+  message: string;  
+  chatroomId: string;
 
-  constructor(private chat: ChatService) { }
+  constructor(private chat: ChatService, private route: ActivatedRoute) { 
+    this.chatroomId = this.route.snapshot.params['id'];
+  }
 
   ngOnInit() {
   }
 
   send() {
-    this.chat.sendMessage(this.message);
+    this.chat.sendMessage(this.message, this.chatroomId);
     this.message = '';
   }
 

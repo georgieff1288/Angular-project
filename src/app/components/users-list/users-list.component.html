@@ -1,18 +1,15 @@
 <div class="container">
-    <div class="chatroomName">Chatroom name: My chatroom</div>
+    <div class="chatroomName">{{chatroom.name}}</div>
 
     <div class="regUsers" >Registered users
 
-        <div *ngFor="let user of users" class="userList">
-            <span class="{{user.status}}">
+        <ul *ngFor="let user of users" class="userList">
+            <li class="{{user.status}}">
                 {{user.displayName}}
-            </span> 
-         </div>
+            </li> 
+        </ul>
 
-    </div>
-
-
-    
+    </div>    
 </div>
 
 

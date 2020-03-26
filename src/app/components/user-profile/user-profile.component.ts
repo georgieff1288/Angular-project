@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
       if (user) {
         this.oldEmail = user.email;
       }
-    });
+    });    
   }
 
   edit() {

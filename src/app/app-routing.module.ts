@@ -18,8 +18,8 @@ const routes: Routes = [
     { path: 'chatrooms', component: ChatroomsListComponent },    
     { path: 'createchatroom', component: CreateCharoomComponent },
     { path: 'chatrooms', component: ChatroomsListComponent },
-    { path: 'settings', component: UserProfileComponent },
-    { path: 'chat', component: ChatroomComponent }
+    { path: 'user/profile', component: UserProfileComponent },
+    { path: 'chatroom/:id', component: ChatroomComponent }
 ];
 
 @NgModule({

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import { Chatroom } from 'src/app/shared/models/chatroom.model';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-chatrooms-list',
@@ -11,12 +10,12 @@ import { Chatroom } from 'src/app/shared/models/chatroom.model';
 })
 export class ChatroomsListComponent implements OnInit {
 
-  chatrooms: Chatroom[];
+  chatrooms: any;
 
   constructor(private chat: ChatService) { }
 
   ngOnInit() {
-    this.chat.getChatrooms().valueChanges().subscribe(chatrooms => {
+    this.chat.getChatrooms().valueChanges({ idField: 'chatId' }).subscribe(chatrooms => {
       this.chatrooms = chatrooms;
     });
   }

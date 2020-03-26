@@ -19,7 +19,7 @@ export class ChatService {
   chatMessage: ChatMessage;
   chatrooms: AngularFirestoreCollection;
   chatroom: Chatroom
-  userName: Observable<string>;
+  sender: any;
   users: User[];
 
   constructor(
@@ -31,42 +31,46 @@ export class ChatService {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
-      this.getUser().valueChanges().subscribe(user => console.log(user));      
+      this.getUser().valueChanges().subscribe(user => this.sender = user);
     });
   }
 
   getUser() {
     const userId = this.user.uid;
     const path = `/users/${userId}`;
-     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(path);
-     return userRef;
+    return this.firestore.doc(path);
   }
 
   getUsers(){
     return this.firestore.collection('users', ref => ref); 
   }
 
-  sendMessage(msg: string) {
+  sendMessage(msg: string, chatroomId: string) {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
-    var name = email.match(/^([^@]*)@/)[1];
-    this.chatMessages = this.getMessages();
+    const name = email.match(/^([^@]*)@/)[1];
+    this.chatMessages = this.getMessages(chatroomId);
     this.chatMessages.add({
       message: msg,
       timeSent: timestamp,
-      //userName: this.userName,
-      userName:name,
-      email: email });
+      sender: this.sender
+     });
   }
   
-  getMessages(){
-       return this.firestore.collection('messages', ref => ref.limitToLast(25).orderBy('timeSent'));          
+  getMessages(chatroomId: string){ 
+    return this.firestore.collection('chatrooms')
+      .doc(chatroomId)
+      .collection('messages', ref => ref.limitToLast(25).orderBy('timeSent', 'asc'));           
+  }
+
+  getChatroomById(id: string){
+    return this.firestore.collection('chatrooms').doc(id);
   }
 
   getChatrooms(){
     return this.firestore.collection('chatrooms', ref => ref.orderBy('name'));          
   }
-
+ 
   createChatroom(chatroomName: string){    
     this.chatrooms = this.getChatrooms();
     this.chatrooms.add({name: chatroomName});
@@ -78,7 +82,7 @@ export class ChatService {
     const date = now.getUTCFullYear() + '/' +
                  (now.getUTCMonth() + 1) + '/' +
                  now.getUTCDate();
-    const time = now.getUTCHours() + ':' +
+    const time = (now.getUTCHours() + 2) + ':' +
                  now.getUTCMinutes() + ':' +
                  now.getUTCSeconds();
 

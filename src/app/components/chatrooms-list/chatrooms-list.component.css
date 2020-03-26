@@ -13,12 +13,16 @@
     border-radius: 1px;
     align-items:flex-start;
     background-color: rgb(127, 106, 248);
-    color: rgb(255, 255, 255);
+    color: rgb(250, 250, 250);
     border-radius: 8px;
     text-align: center;
     display: inline-block;
 }
 
+a{
+    text-decoration: none;    
+    color: rgb(250, 250, 250);
+}
 .chatroomName{
     display: inline-block;
 }

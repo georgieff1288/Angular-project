@@ -20,7 +20,7 @@ export class AuthService {
       this.user = afAuth.authState;
      }
     
-     authUser() {
+     authUser():Observable<firebase.User> {
       return this.user;
     }
 
@@ -40,7 +40,9 @@ export class AuthService {
           this.authState = user;
           this.setUserStatus('online');
           this.router.navigate(['chatrooms']);
-        });
+        }).catch((error) => {
+          window.alert(error.message)
+        })
     }
         
     signUp(email: string, password: string, displayName: string) {
@@ -49,10 +51,13 @@ export class AuthService {
                 this.authState = user;
                 const status = 'online';
                 this.setUserData(email, displayName, status);
-              }).catch(error => console.log(error));
+              }).then(resolve => this.router.navigate(['']))
+              .catch((error) => {
+                window.alert(error.message)
+              })
     }
 
-    setUserData(email: string, displayName: string, status: string): void {
+    setUserData(email: string, displayName: string, status: string) {
       const path = `users/${this.currentUserId}`;
       const data = {
         email: email,
@@ -70,12 +75,14 @@ export class AuthService {
       const status = 'online';
       user.updatePassword(password);
       user.updateEmail(email);
-
       this.setUserData(email, displayName, status);
-      this.logout();
+      this.logout();      
+      this.router.navigate(['/home']).catch((error) => {
+        window.alert(error.message)
+      })
     }
 
-    setUserStatus(status: string): void {
+    setUserStatus(status: string) {
       const path = `users/${this.currentUserId}`;
 
       const data = {

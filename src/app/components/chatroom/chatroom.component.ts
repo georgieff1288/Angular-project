@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-chatroom',
@@ -6,12 +6,12 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewIn
   styleUrls: ['./chatroom.component.css']
 })
 export class ChatroomComponent implements OnInit, AfterViewChecked  {
-  @ViewChild('scroller', {static:false}) private feedContainer: ElementRef; 
-  
+  @ViewChild('scroller', {static:false}) private feedContainer: ElementRef;
 
-  constructor() { }
+  constructor() {  }
 
   ngOnInit() {
+    
   }
   
   scrollToBottom(): void {

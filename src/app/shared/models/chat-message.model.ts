@@ -1,7 +1,5 @@
 export class ChatMessage {
-    $key?: string;
-    email?: string;
-    userName?: string;
+    sender?: any;
     message?: string;
     timeSent?: Date = new Date();
 }
