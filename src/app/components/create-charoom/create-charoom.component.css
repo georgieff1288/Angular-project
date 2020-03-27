@@ -40,3 +40,13 @@
     font-size: 16px;
     border-radius: 4px;
   }
+
+  #btn-create:disabled{
+    background-color:rgb(238, 238, 238);
+    color: rgb(153, 153, 153);
+  }
+
+  span{
+    font-size: small;
+    color: rgb(243, 35, 35);
+  }

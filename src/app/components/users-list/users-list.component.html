@@ -1,14 +1,12 @@
 <div class="container">
     <div class="chatroomName">{{chatroom.name}}</div>
-
-    <div class="regUsers" >Users
-
+    
+    <div class="regUsers" >Users        
         <ul *ngFor="let user of users" class="userList">
             <li class="{{user.status}}">
                 {{user.displayName}}
             </li> 
-        </ul>
-        
+        </ul>        
     </div>    
 </div>
 

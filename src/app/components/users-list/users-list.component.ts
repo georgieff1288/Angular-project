@@ -18,7 +18,6 @@ export class UsersListComponent implements OnInit {
     this.chatService.getUsers().valueChanges().subscribe(users => {
        this.users = users});
     this.chatroomId = this.route.snapshot.params['id'];
-;
   }  
 
   ngOnInit(){

@@ -7,6 +7,7 @@ import { ChatroomsListComponent } from './components/chatrooms-list/chatrooms-li
 import { HomeComponent } from './components/home/home.component';
 import { CreateCharoomComponent } from './components/create-charoom/create-charoom.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 
 
@@ -15,11 +16,10 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'chatrooms', component: ChatroomsListComponent },    
-    { path: 'createchatroom', component: CreateCharoomComponent },
-    { path: 'chatrooms', component: ChatroomsListComponent },
-    { path: 'user/profile', component: UserProfileComponent },
-    { path: 'chatroom/:id', component: ChatroomComponent }
+    { path: 'chatrooms',canActivate:[AuthGuard], component: ChatroomsListComponent },    
+    { path: 'createchatroom',canActivate:[AuthGuard], component: CreateCharoomComponent },
+    { path: 'user/profile',canActivate:[AuthGuard], component: UserProfileComponent },
+    { path: 'chatroom/:id',canActivate:[AuthGuard], component: ChatroomComponent }
 ];
 
 @NgModule({

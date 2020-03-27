@@ -12,9 +12,6 @@ export class UserProfileComponent implements OnInit {
 
   user: Observable<firebase.User>;
   oldEmail: string;
-  email: string;
-  password: string;
-  displayName: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,11 +24,8 @@ export class UserProfileComponent implements OnInit {
     });    
   }
 
-  edit() {
-    const email = this.email;
-    const password = this.password;
-    const displayName = this.displayName
-    this.authService.editProfile(email, password, displayName);
+  edit(formValue: { email: string, password: string, displayName: string }) {
+    this.authService.editProfile(formValue.email, formValue.password, formValue.displayName);
     this.router.navigate(['/login'])
   }
 

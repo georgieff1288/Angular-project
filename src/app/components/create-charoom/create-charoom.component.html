@@ -1,12 +1,19 @@
 <div class="container">
-    <div class="createChatroom">        
-        <h2 >Create chatroom</h2>            
+    <form  #createForm="ngForm" class="createChatroom" (ngSubmit)="create(createForm.value)">        
+        <h2 >Create chatroom</h2>
+        <span *ngIf="createChatroomInput.invalid && createChatroomInput.touched">Name must be at least 6 characters</span>            
         <input 
-          [(ngModel)]="chatroomName"
-          class="formInput" />
-        <button class="btn" 
-                (click)="create()">
+          #createChatroomInput="ngModel"
+          ngModel
+          placeholder="Enter chatroom name"
+          name="chatroomName"
+          class="formInput"
+          minlength="6"
+          required/>
+        <button [disabled]="!createForm.form.valid"
+                class="btn"
+                id="btn-create">
                 Create
         </button>        
-    </div>
+      </form>
 </div>

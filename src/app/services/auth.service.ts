@@ -24,11 +24,18 @@ export class AuthService {
       return this.user;
     }
 
+    get isLogged() { 
+      if(firebase.auth().currentUser == null){
+        return false
+      } 
+      return true
+    }
+
      get currentUserId(): string {      
       return this.authState !== null ? this.authState.user.uid : '';
     }
 
-    logout() {      
+    logout() {
       this.afAuth.auth.signOut();
       this.setUserStatus('offline');
       this.router.navigate(['/home']);

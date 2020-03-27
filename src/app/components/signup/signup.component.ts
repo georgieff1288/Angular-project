@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,18 +8,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignupComponent  {
 
-  email: string;
-  password: string;
-  displayName: string;
-  errorMsg: string;
+  constructor(private authService: AuthService) {  }
 
-  constructor(private authService: AuthService, private router: Router) { }
-
-  signUp() {
-    const email = this.email;
-    const password = this.password;
-    const displayName = this.displayName;
-    this.authService.signUp(email, password, displayName);
+  signUp(formValue: { email: string, password: string, displayName: string }) {
+    this.authService.signUp(formValue.email, formValue.password, formValue.displayName);
   }
 
 }

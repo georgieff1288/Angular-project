@@ -8,13 +8,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent  {
 
-  email: string;
-  password: string;
-  errorMsg: string;
-
   constructor(private authService: AuthService) { }
 
-  login() {
-    this.authService.login(this.email, this.password)
+  login(formValue: { email: string, password: string }) {
+    this.authService.login(formValue.email, formValue.password)
   }
 }

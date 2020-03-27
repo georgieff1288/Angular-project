@@ -1,31 +1,56 @@
 <div class="container">
     <div class="editCard">
-     <form #editForm="ngForm">
+     <form #editForm="ngForm" (ngSubmit)="edit(editForm.value)">
       <h2 class="heading">Edit profile</h2>
   
       <label class="label">Email</label>
+      <br/><span *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</span>
          <input 
-         type="email" name="email"
+         #emailInput="ngModel"
+         ngModel 
+         type="email" 
+         name="email"
          value="{{oldEmail}}" 
-         [(ngModel)]="email" class="formInput"
+         class="formInput"
          maxlength="60" required/>
   
       <label class="label">Password</label>
-        <input 
-          type="password" name="password"
+      <br/><span *ngIf="passwordInput.invalid && passwordInput.touched">Password must be at least 6 characters</span>
+        <input
+          #passwordInput="ngModel"
+          ngModel  
+          type="password" 
+          name="password"
           placeholder="Choose a password" 
-          [(ngModel)]="password" class="formInput" 
+          class="formInput"
+          minlength="6" 
+          required/>
+
+      <label class="label">Confirm password</label>
+      <br/><span *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched">Password and confirm password does not match</span>
+        <input 
+          #confirmPasswordInput="ngModel"
+          ngModel 
+          type="password" 
+          name="confirmPassword"
+          placeholder="Confirm password" 
+          class="formInput"
+          minlength="6"
+          pattern="{{ passwordInput.value }}" 
           required/>
 
         <label class="label">Username</label>
+        <br/><span *ngIf="displayNameInput.invalid && displayNameInput.touched">Username must be at least 3 characters</span>
           <input 
+            #displayNameInput="ngModel"
+            ngModel
             name="displayName"
             placeholder="Enter a username" 
-            [(ngModel)]="displayName" class="formInput"
-            maxlength="12" required/>
+            class="formInput"
+            minlength="3" required/>
   
         <button [disabled]="!editForm.form.valid" 
-                type="submit" (click)="edit()"
+                type="submit"
                 class="btn" id="btn-edit">
                 Edit
         </button>

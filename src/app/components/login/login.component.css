@@ -1,18 +1,14 @@
 .container{
-  height: 100%;
   overflow:hidden;
   background: rgba(255,255,255);
 }
 
 .loginCard{
   display: block;
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 4px;
   background-color: rgba(255,255,255,0.85);
   width: 700px;
   height: 420px;
   margin: auto;
-  margin-top: 40px;
   text-align: center;
   padding: 80px 30px;
   overflow: hidden;
@@ -45,19 +41,21 @@
   border-radius: 4px;
 }
 
-#btn-signUp{
-    background-color:rgb(42, 40, 69);
-}
 
-#btn-signUp:hover{
-    background-color:rgb(74, 72, 101);
+
+#btn-login:disabled{
+  background-color:rgb(238, 238, 238);
+  color: rgb(153, 153, 153);
 }
 
 #btn-login{
     background-color:rgb(74, 72, 117);
 }
 
-
+span{
+  font-size: small;
+  color: rgb(243, 35, 35);
+}
 
 h2{
     height: 2em;

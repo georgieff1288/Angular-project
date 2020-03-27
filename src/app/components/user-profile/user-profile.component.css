@@ -5,11 +5,9 @@
   
   .editCard{
     display: block;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 4px;
     background-color: rgba(255,255,255,0.85);
-    width: 700px;
-    height: 400px;
+    width: 600px;
+    height: 450px;
     margin: auto;
     margin-top: 10px;
     padding: 10px 30px;
@@ -62,4 +60,9 @@
   
   .label{
       font-size: 0.9em;
+  }
+  
+  span{
+    font-size: small;
+    color: rgb(243, 35, 35);
   }

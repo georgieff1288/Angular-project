@@ -1,19 +1,33 @@
 <div class="container">
     <div class="loginCard">
-      <form #loginForm="ngForm">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
         <h2 class="heading">Log In</h2>
+      
+        <span *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</span>
         <input 
-          [(ngModel)]="email"
+          #emailInput="ngModel"
+          ngModel
           type="email" 
-          name="email" 
-          class="formInput" />
-        <input type="password" 
-          [(ngModel)]="password"
+          name="email"
+          placeholder="Enter your email address"
+          class="formInput" 
+          required 
+          email/>
+        
+        <span *ngIf="passwordInput.invalid && passwordInput.touched">Password must be at least 6 characters</span>
+        <input type="password"
+          #passwordInput="ngModel" 
+          ngModel
           name="password" 
-          class="formInput" />
-        <button class="btn" 
-                id="btn-login" 
-                (click)="login()">
+          placeholder="Enter your password"
+          class="formInput" 
+          minlength="6" 
+          required/>
+        
+        
+        <button [disabled]="!loginForm.form.valid"
+          class="btn" 
+          id="btn-login">
                 Log In
         </button>
       </form>      

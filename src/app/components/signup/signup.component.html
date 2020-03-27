@@ -1,31 +1,58 @@
 <div class="container">
     <div class="signUpCard">
-     <form #signupForm="ngForm">
+     <form #signupForm="ngForm" (ngSubmit)="signUp(signupForm.value)">
       <h2 class="heading">Sign Up</h2>
-  
-      <label class="label">Email</label>
-         <input 
-         type="email" name="email"
+
+     <label class="label">Email</label>
+     <br/><span *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</span> 
+       <input 
+         #emailInput="ngModel"
+         ngModel         
+         type="email"  
+         name="email"
          placeholder="Enter your email address" 
-         [(ngModel)]="email" class="formInput"
-         maxlength="60" required/>
+         class="formInput"
+         maxlength="60" required email/>
+         
+         
   
       <label class="label">Password</label>
-        <input 
-          type="password" name="password"
+      <br/><span *ngIf="passwordInput.invalid && passwordInput.touched">Password must be at least 6 characters</span>     
+        <input
+          #passwordInput="ngModel"
+          ngModel         
+          type="password"   
+          name="password"
           placeholder="Choose a password" 
-          [(ngModel)]="password" class="formInput" 
+          class="formInput" 
+          minlength="6" 
+          required/>
+
+      <label class="label">Confirm password</label>
+      <br/><span *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched">Password and confirm password does not match</span>
+        <input
+          #confirmPasswordInput="ngModel"
+          ngModel 
+          type="password" 
+          name="confirmPassword"
+          placeholder="Confirm password" 
+          class="formInput" 
+          minlength="6" 
+          pattern="{{ passwordInput.value }}" 
           required/>
   
       <label class="label">Username</label>
-        <input 
-          name="displayName"
+      <br/><span *ngIf="displayNameInput.invalid && displayNameInput.touched">Username must be at least 3 characters</span>
+        <input
+          #displayNameInput="ngModel"
+          ngModel  
+          name="displayName"           
           placeholder="Enter a username" 
-          [(ngModel)]="displayName" class="formInput"
-          maxlength="12" required/>
+          class="formInput"
+          minlength="3" 
+          required/>
   
         <button [disabled]="!signupForm.form.valid" 
-                type="submit" (click)="signUp()"
                 class="btn" id="btn-signUp">
                 Sign Up
         </button>

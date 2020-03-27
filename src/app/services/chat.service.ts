@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
 import { ChatMessage } from '../shared/models/chat-message.model'
 import * as firebase from 'firebase/app';
 import { User } from '../shared/models/user.model';
@@ -86,5 +85,4 @@ export class ChatService {
 
     return (date + ' ' + time);
   }
-
 }

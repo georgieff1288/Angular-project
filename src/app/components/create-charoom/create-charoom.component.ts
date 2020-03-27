@@ -8,16 +8,13 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class CreateCharoomComponent implements OnInit {
 
-  chatroomName: string;
-
-  constructor(private chat: ChatService) { }
+  constructor(private chatService: ChatService) { }
 
   ngOnInit() {
   }
 
-  create(){
-    this.chat.createChatroom(this.chatroomName);
-    this.chatroomName = '';
+  create(createFormValue:{chatroomName: string}){
+    this.chatService.createChatroom(createFormValue.chatroomName);
   }
 
 }

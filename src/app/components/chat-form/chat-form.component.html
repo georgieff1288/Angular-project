@@ -1,8 +1,14 @@
-<input 
-    class="chatInput" 
-    [(ngModel)]="message"     
-    (keydown)="handleSubmit($event)"
-    />
+  <form class="chatForm" #chatForm="ngForm" (ngSubmit)="send(chatForm.value)">
+    <input 
+      #emailInput="ngModel"
+      ngModel
+      name="message"
+      class="chatInput"
+      required
+      minlength="1"/>
 
-<button class="chatButton" 
-  (click)=send()>Send</button>
+    <button [disabled]="!chatForm.form.valid"
+      class="chatButton"
+      id="btn-send" 
+      >Send</button>
+  </form>
