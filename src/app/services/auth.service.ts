@@ -35,6 +35,10 @@ export class AuthService {
       return this.authState !== null ? this.authState.user.uid : '';
     }
 
+    getUserDisplayName(userUid){
+      return this.firestore.collection('users').doc(userUid)
+    }
+
     logout() {
       this.afAuth.auth.signOut();
       this.setUserStatus('offline');

@@ -10,6 +10,7 @@
          ngModel 
          type="email" 
          name="email"
+         placeholder="Enter your email address"
          value="{{oldEmail}}" 
          class="formInput"
          maxlength="60" required/>
@@ -45,7 +46,8 @@
             #displayNameInput="ngModel"
             ngModel
             name="displayName"
-            placeholder="Enter a username" 
+            placeholder="Enter a username"
+            value="{{oldDisplayName.displayName}}"  
             class="formInput"
             minlength="3" required/>
   

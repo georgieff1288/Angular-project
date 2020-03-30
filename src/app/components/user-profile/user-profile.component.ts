@@ -12,6 +12,7 @@ export class UserProfileComponent implements OnInit {
 
   user: Observable<firebase.User>;
   oldEmail: string;
+  oldDisplayName: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -20,6 +21,9 @@ export class UserProfileComponent implements OnInit {
     this.user.subscribe(user => {
       if (user) {
         this.oldEmail = user.email;
+        this.authService.getUserDisplayName(user.uid)
+          .valueChanges()
+          .subscribe(user => {this.oldDisplayName = user})
       }
     });    
   }
