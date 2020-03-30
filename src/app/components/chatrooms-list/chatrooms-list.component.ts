@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-chatrooms-list',
@@ -9,12 +10,20 @@ import { ChatService } from 'src/app/services/chat.service';
 export class ChatroomsListComponent implements OnInit {
 
   chatrooms: any;
+  userUid: string;
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService, private authService: AuthService) {
+    this.userUid = this.authService.currentUserId;
+   }
 
   ngOnInit() {
     this.chatService.getChatrooms().valueChanges({ idField: 'chatId' }).subscribe(chatrooms => {
       this.chatrooms = chatrooms;
     });
   }
+
+  deleteChatroom(chatroomId){
+    this.chatService.deleteChatroom(chatroomId);
+  }
+
 }

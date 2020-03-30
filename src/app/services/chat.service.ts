@@ -70,8 +70,13 @@ export class ChatService {
  
   createChatroom(chatroomName: string){    
     this.chatrooms = this.getChatrooms();
-    this.chatrooms.add({name: chatroomName});
+    this.chatrooms.add({name: chatroomName, creatorUid:this.user.uid});
     this.router.navigate(['chatrooms']);
+  }
+
+  deleteChatroom(chatroomId){
+    this.firestore.collection('chatrooms').doc(chatroomId).delete();
+    return window.alert('Chatroom was deleted.')
   }
 
   getTimeStamp() {

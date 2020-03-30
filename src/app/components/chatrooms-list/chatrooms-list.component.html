@@ -1,7 +1,16 @@
 <div class="container">
     <div *ngFor="let chatroom of chatrooms" class="chatroomList">
-        <span class="chatroomName">
-            <a routerLink="/chatroom/{{chatroom.chatId}}">{{chatroom.name}}</a>            
-        </span> 
+        <div>
+            <span class="chatroomName">
+                <div>{{chatroom.name}}</div>                      
+            </span>
+        </div>
+        <span>
+            <a class="join" routerLink="/chatroom/{{chatroom.chatId}}">Join</a>
+        </span>
+        <span *ngIf="userUid == chatroom.creatorUid">
+            <button class="btn" (click)="deleteChatroom(chatroom.chatId)">Delete</button>
+        </span>         
+          
     </div>
 </div>
