@@ -84,7 +84,7 @@ export class ChatService {
     const date = now.getUTCFullYear() + '/' +
                  (now.getUTCMonth() + 1) + '/' +
                  now.getUTCDate();
-    const time = (now.getUTCHours() + 2) + ':' +
+    const time = (now.getUTCHours() + 3) + ':' +
                  now.getUTCMinutes() + ':' +
                  now.getUTCSeconds();
 
