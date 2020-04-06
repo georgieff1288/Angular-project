@@ -88,7 +88,7 @@ export class AuthService {
         window.alert(error.message)});
       await user.updateEmail(email).catch((error) => {
         window.alert(error.message)})
-            this.logout('/login');
+      this.logout('/login');
     }
 
     setUserStatus(status: string) {

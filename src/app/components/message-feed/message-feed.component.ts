@@ -21,13 +21,11 @@ export class MessageFeedComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() {
-    this.feed = this.chatService.getMessages(this.chatroomId).valueChanges();
-    //this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
+    this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
   }
 
   ngOnChanges() {
-    this.feed = this.chatService.getMessages(this.chatroomId).valueChanges();
-    //this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
+    this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
   }
 
 }

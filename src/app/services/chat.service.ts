@@ -57,7 +57,7 @@ export class ChatService {
   getMessages(chatroomId: string){ 
     return this.firestore.collection('chatrooms')
       .doc(chatroomId)
-      .collection('messages', ref => ref.limitToLast(25).orderBy('timeSent', 'asc'));           
+      .collection('messages', ref => ref.limitToLast(15).orderBy('timeSent', 'asc'));           
   }
 
   getChatroomById(id: string){
