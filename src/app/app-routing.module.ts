@@ -18,7 +18,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'chatrooms',canActivate:[AuthGuard], component: ChatroomsListComponent },    
     { path: 'createchatroom',canActivate:[AuthGuard], component: CreateCharoomComponent },
-    { path: 'user/profile',canActivate:[AuthGuard], component: UserProfileComponent },
+    { path: 'settings',canActivate:[AuthGuard], component: UserProfileComponent },
     { path: 'chatroom/:id',canActivate:[AuthGuard], component: ChatroomComponent }
 ];
 

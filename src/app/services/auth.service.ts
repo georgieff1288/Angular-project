@@ -39,10 +39,10 @@ export class AuthService {
       return this.firestore.collection('users').doc(userUid)
     }
 
-    logout() {
+    logout(route) {
       this.afAuth.auth.signOut();
       this.setUserStatus('offline');
-      this.router.navigate(['/home']);
+      this.router.navigate([route]);
     }
 
     login(email: string, password: string) {
@@ -79,18 +79,16 @@ export class AuthService {
       const userRef : AngularFirestoreDocument<User> = this.firestore.doc(path);
       userRef.set(data, { merge: true });
     }
-    
 
-    editProfile(email: string, password: string, displayName: string){
+    async editProfile(email: string, password: string, displayName: string){
       const user = this.afAuth.auth.currentUser;
-      const status = 'online';
-      user.updatePassword(password);
-      user.updateEmail(email);
-      this.setUserData(email, displayName, status);
-      this.logout();      
-      this.router.navigate(['/home']).catch((error) => {
-        window.alert(error.message)
-      })
+      const status = 'offline';
+      this.setUserData(email, displayName, status);      
+      await user.updatePassword(password).catch((error) => {
+        window.alert(error.message)});
+      await user.updateEmail(email).catch((error) => {
+        window.alert(error.message)})
+            this.logout('/login');
     }
 
     setUserStatus(status: string) {
