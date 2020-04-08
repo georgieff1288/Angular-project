@@ -13,7 +13,7 @@ export class NavbarComponent {
   user: Observable<firebase.User>;
   userEmail: string;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService) {
     this.user = this.authService.authUser();
     this.user.subscribe(user => {
       if (user) {
@@ -22,6 +22,6 @@ export class NavbarComponent {
    }
 
   logout() {
-    this.authService.logout('/');
+    this.authService.logout();
   }
 }

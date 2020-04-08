@@ -39,10 +39,10 @@ export class AuthService {
       return this.firestore.collection('users').doc(userUid)
     }
 
-    logout(route) {
-      this.afAuth.auth.signOut();
+    logout() {      
       this.setUserStatus('offline');
-      this.router.navigate([route]);
+      this.afAuth.auth.signOut();
+      this.router.navigate(['/']);
     }
 
     login(email: string, password: string) {
@@ -88,7 +88,8 @@ export class AuthService {
         window.alert(error.message)});
       await user.updateEmail(email).catch((error) => {
         window.alert(error.message)})
-      this.logout('/login');
+      this.logout();
+      this.router.navigate(['/login']);
     }
 
     setUserStatus(status: string) {

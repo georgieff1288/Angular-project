@@ -18,8 +18,8 @@ export class ChatFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  send(formValue: { message: string }) {
-    this.chatService.sendMessage(formValue.message, this.chatroomId);
+  async send(formValue: { message: string }) {
     this.formValue.resetForm();
+    await this.chatService.sendMessage(formValue.message, this.chatroomId);    
   }  
 }

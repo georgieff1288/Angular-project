@@ -44,10 +44,10 @@ export class ChatService {
     return this.firestore.collection('users', ref => ref); 
   }
 
-  sendMessage(msg: string, chatroomId: string) {
+  async sendMessage(msg: string, chatroomId: string) {
     const timestamp = this.getTimeStamp();
     this.chatMessages = this.getMessages(chatroomId);
-    this.chatMessages.add({
+    await this.chatMessages.add({
       message: msg,
       timeSent: timestamp,
       sender: this.sender
