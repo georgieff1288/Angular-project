@@ -11,11 +11,10 @@ export class ChatFormComponent implements OnInit {
   @ViewChild('chatForm', {static:false}) formValue;
   chatroomId: string;
 
-  constructor(private chatService: ChatService, private route: ActivatedRoute) { 
-    this.chatroomId = this.route.snapshot.params['id'];
-  }
+  constructor(private chatService: ChatService, private route: ActivatedRoute) {  }
 
   ngOnInit() {
+    this.chatroomId = this.route.snapshot.params['id'];
   }
 
   async send(formValue: { message: string }) {

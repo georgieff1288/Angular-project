@@ -16,16 +16,14 @@ export class MessageFeedComponent implements OnInit, OnChanges {
   user: User;
   chatroomId: string;
 
-  constructor(private chatService: ChatService, private route: ActivatedRoute) {
-    this.chatroomId = this.route.snapshot.params['id'];
-   }
+  constructor(private chatService: ChatService, private route: ActivatedRoute) {  }
 
   ngOnInit() {
+    this.chatroomId = this.route.snapshot.params['id'];
     this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
   }
 
   ngOnChanges() {
     this.feed = this.chatService.getMessages(this.chatroomId).snapshotChanges().pipe(map(actions => actions.map(a => a.payload.doc.data())))
   }
-
 }

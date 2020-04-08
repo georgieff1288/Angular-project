@@ -13,9 +13,7 @@ export class HomeComponent implements OnInit {
   user: Observable<firebase.User>;
   userEmail: string;
 
-  constructor(private authService: AuthService) { 
-    
-  }
+  constructor(private authService: AuthService) {  }
 
   ngOnInit() {
     this.user = this.authService.authUser();

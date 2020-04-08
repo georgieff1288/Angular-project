@@ -32,5 +32,4 @@ export class UserProfileComponent implements OnInit {
     this.authService.editProfile(formValue.email, formValue.password, formValue.displayName);
     this.router.navigate(['/login'])
   }
-
 }

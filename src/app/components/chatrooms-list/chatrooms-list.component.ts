@@ -12,11 +12,10 @@ export class ChatroomsListComponent implements OnInit {
   chatrooms: any;
   userUid: string;
 
-  constructor(private chatService: ChatService, private authService: AuthService) {
-    this.userUid = this.authService.currentUserId;
-   }
+  constructor(private chatService: ChatService, private authService: AuthService) {  }
 
   ngOnInit() {
+    this.userUid = this.authService.currentUserId;
     this.chatService.getChatrooms().valueChanges({ idField: 'chatId' }).subscribe(chatrooms => {
       this.chatrooms = chatrooms;
     });
@@ -25,5 +24,4 @@ export class ChatroomsListComponent implements OnInit {
   deleteChatroom(chatroomId){
     this.chatService.deleteChatroom(chatroomId);
   }
-
 }

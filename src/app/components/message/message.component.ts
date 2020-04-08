@@ -19,6 +19,5 @@ export class MessageComponent implements OnInit {
     this.messageContent = chatMessage.message;
     this.timeStamp = chatMessage.timeSent;
     this.sender = this.chatMessage.sender;    
-  }
-  
+  }  
 }

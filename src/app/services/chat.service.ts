@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import { User } from '../shared/models/user.model';
 import { Chatroom } from '../shared/models/chatroom.model';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 
 @Injectable({
@@ -80,14 +81,6 @@ export class ChatService {
   }
 
   getTimeStamp() {
-    const now = new Date();
-    const date = now.getUTCFullYear() + '/' +
-                 (now.getUTCMonth() + 1) + '/' +
-                 now.getUTCDate();
-    const time = (now.getUTCHours() + 3) + ':' +
-                 now.getUTCMinutes() + ':' +
-                 now.getUTCSeconds();
-
-    return (date + ' ' + time);
+    return moment().format('MMMM Do YYYY, h:mm:ss a');
   }
 }
