@@ -1,6 +1,7 @@
 <div class="container">
+    <div *ngIf="isEmpty" class="empty">There is no chatrooms created.</div>
     <div *ngFor="let chatroom of chatrooms" class="chatroomList">
-        <div>
+        <div>            
             <span class="chatroomName">
                 <div>{{chatroom.name}}</div>                      
             </span>
@@ -10,7 +11,8 @@
         </span>
         <span *ngIf="userUid == chatroom.creatorUid">
             <button class="btn" (click)="deleteChatroom(chatroom.chatId)">Delete</button>
-        </span>         
-          
+        </span> 
     </div>
 </div>
+
+

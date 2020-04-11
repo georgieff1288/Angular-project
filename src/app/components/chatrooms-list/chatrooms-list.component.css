@@ -4,6 +4,12 @@
     background: rgba(255,255,255);
 }
 
+.empty{
+    margin-top: 30px;
+    font-size: xx-large;
+    text-align: center; 
+ }
+
 .chatroomList{
     height: auto;
     padding: 10px;

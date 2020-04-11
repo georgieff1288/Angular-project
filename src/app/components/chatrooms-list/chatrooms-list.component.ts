@@ -11,12 +11,18 @@ export class ChatroomsListComponent implements OnInit {
 
   chatrooms: any;
   userUid: string;
+  isEmpty: boolean = false
 
   constructor(private chatService: ChatService, private authService: AuthService) {  }
 
   ngOnInit() {
     this.userUid = this.authService.currentUserId;
     this.chatService.getChatrooms().valueChanges({ idField: 'chatId' }).subscribe(chatrooms => {
+      if(chatrooms.length == 0){
+        this.isEmpty = true;
+      }else{
+        this.isEmpty = false
+      }
       this.chatrooms = chatrooms;
     });
   }
