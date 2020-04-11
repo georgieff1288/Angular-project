@@ -1,13 +1,13 @@
-<div class="messageContainer">    
+<div id="messageContainer" [ngClass]="userEmail == sender.email ? 'ownMessage': 'notOwnMessage'">
     <div class="messageData">
         <span class="sender">
-            {{ sender.displayName }}
+        {{ sender.displayName }}
         </span>
-        <span class="timestamp">
-            {{ timeStamp }}
+    <span class="timestamp">
+        {{ timeStamp }}
         </span>
     </div>
     <div class="messageContent">
-        {{ messageContent }}
+    {{ messageContent }}
     </div>
 </div>

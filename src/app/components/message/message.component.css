@@ -1,4 +1,4 @@
-.messageContainer{
+#messageContainer{
     display: flex;
     height: auto;
     width: 70%;
@@ -8,8 +8,14 @@
     background-color: rgb(238, 238, 238);
 }
 
-.isOwnMessageContainer{
-    background-color: rgb(1, 87, 155);
+.ownMessage{
+    margin-right: 30px;
+    float: right;
+}
+
+.notOwnMessage{
+    margin-left: 10px;
+    float: left;
 }
 
 .messageData{
