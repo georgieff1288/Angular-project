@@ -6,7 +6,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
   styleUrls: ['./chatroom.component.css']
 })
 export class ChatroomComponent implements OnInit, AfterViewChecked  {
-  @ViewChild('scroller', {static:false}) private feedContainer: ElementRef;
+  @ViewChild('scroller') private feedContainer: ElementRef;
 
   constructor() {  }
 

@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ChatFormComponent implements OnInit {
 
-  @ViewChild('chatForm', {static:false}) formValue;
+  @ViewChild('chatForm') formValue;
   chatroomId: string;
 
   constructor(private chatService: ChatService, private route: ActivatedRoute) {  }
